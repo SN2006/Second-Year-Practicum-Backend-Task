@@ -1,0 +1,51 @@
+@startuml
+entity Author {
+  *id : Long
+  --
+  name : String
+}
+
+entity Book {
+  *id : Long
+  --
+  name : String
+  description : String
+  publication_year : Integer
+}
+
+entity Genre {
+  *id : Long
+  --
+  name : String
+}
+
+entity User {
+  *id : Long
+  --
+  email : String
+  password : String
+  role : Enum
+}
+
+entity FavouriteBooks {
+  *user_id : Long
+  *book_id : Long
+}
+
+entity BooksAuthors {
+  *book_id : Long
+  *author_id : Long
+}
+
+entity BooksGenres {
+  *book_id : Long
+  *genre_id : Long
+}
+
+Author }o--o{ BooksAuthors
+Book }o--o{ BooksAuthors
+Book }o--o{ BooksGenres
+Genre }o--o{ BooksGenres
+User }o--o{ FavouriteBooks
+Book }o--o{ FavouriteBooks
+@enduml

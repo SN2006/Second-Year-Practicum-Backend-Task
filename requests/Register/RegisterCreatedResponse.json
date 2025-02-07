@@ -1,0 +1,7 @@
+{
+  "id": 4,
+  "email": "client3@gmail.com",
+  "role": "CLIENT",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQzQGdtYWlsLmNvbSIsImlhdCI6MTczODg2MTYwNCwiZXhwIjoxNzQxNTQwMDA0fQ.voyWH9Ycywa0KOMU3wGtVxiMmsWVkX5WjOZ3wP78wyw",
+  "favouriteBooks": []
+}

@@ -1,0 +1,268 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AppExceptionHandler {
+  + AppExceptionHandler(): 
+  + badRequestExceptionHandler(Exception): ResponseEntity<ExceptionDto>
+  + exceptionHandler(Exception): ResponseEntity<ExceptionDto>
+}
+class AuthController {
+  + AuthController(UserService, UserAuthProvider): 
+  + register(SignUpDto, BindingResult): ResponseEntity<UserDto>
+  + login(CredentialsDto): ResponseEntity<UserDto>
+}
+class Author {
+  + Author(Long, String): 
+  + Author(): 
+  - fullName: String
+  - id: Long
+   id: Long
+   fullName: String
+}
+class AuthorDto {
+  + AuthorDto(): 
+  + AuthorDto(String): 
+  - fullName: String
+   fullName: String
+}
+interface AuthorRepository << interface >> {
+  + findByFullNameIgnoreCase(String): Optional<Author>
+}
+class BadRequestException {
+  + BadRequestException(Map<String, String>): 
+  + BadRequestException(BindingResult): 
+   fieldsErrors: Map<String, String>
+   message: String
+}
+class BasicConfiguration {
+  + BasicConfiguration(): 
+  + modelMapper(): ModelMapper
+}
+class Book {
+  + Book(): 
+  + Book(Long, String, String, Integer, List<Author>, List<Genre>): 
+  - name: String
+  - description: String
+  - authors: List<Author>
+  - id: Long
+  - publicationYear: Integer
+  - genres: List<Genre>
+   name: String
+   description: String
+   authors: List<Author>
+   genres: List<Genre>
+   id: Long
+   publicationYear: Integer
+}
+class BookController {
+  + BookController(BookService, UserService): 
+  + createBook(CreateBookDto, BindingResult): ResponseEntity<BookDto>
+  + deleteBookById(Long): void
+  + allBooks(): ResponseEntity<List<BookDto>>
+  + bookCsv(): ResponseEntity<Resource>
+  + bookById(Long): ResponseEntity<BookDto>
+  + favouriteBooks(Authentication): ResponseEntity<List<BookDto>>
+  + addFavouriteBook(Long, Authentication): ResponseEntity<BookDto>
+  + deleteFavouriteBook(Long, Authentication): void
+}
+class BookDto {
+  + BookDto(Long, String, String, Integer, List<AuthorDto>, List<GenreDto>): 
+  + BookDto(): 
+  - authors: List<AuthorDto>
+  - publicationYear: Integer
+  - id: Long
+  - name: String
+  - description: String
+  - genres: List<GenreDto>
+   name: String
+   description: String
+   authors: List<AuthorDto>
+   genres: List<GenreDto>
+   id: Long
+   publicationYear: Integer
+}
+interface BookRepository << interface >> {
+  + findByName(String): Optional<Book>
+}
+class BookService {
+  + BookService(BookRepository, AuthorRepository, GenreRepository, ModelMapper): 
+  + deleteById(Long): void
+  + findAll(): List<BookDto>
+  + save(CreateBookDto): BookDto
+  + findById(Long): BookDto
+   csvBooks: List<List<String>>
+}
+class CommandLineHandler {
+  + CommandLineHandler(UserService): 
+  + setRole(String, String): String
+  + exit(): void
+}
+class CreateBookDto {
+  + CreateBookDto(String, String, Integer, List<AuthorDto>, List<GenreDto>): 
+  + CreateBookDto(): 
+  - authors: List<AuthorDto>
+  - publicationYear: Integer
+  - name: String
+  - description: String
+  - genres: List<GenreDto>
+   name: String
+   description: String
+   authors: List<AuthorDto>
+   genres: List<GenreDto>
+   publicationYear: Integer
+}
+class CredentialsDto {
+  + CredentialsDto(): 
+  + CredentialsDto(String, char[]): 
+  - email: String
+  - password: char[]
+   password: char[]
+   email: String
+}
+class ExceptionDto {
+  + ExceptionDto(String): 
+  + ExceptionDto(): 
+  - message: String
+   message: String
+}
+class Genre {
+  + Genre(): 
+  + Genre(Long, String): 
+  - id: Long
+  - name: String
+   name: String
+   id: Long
+}
+class GenreDto {
+  + GenreDto(): 
+  + GenreDto(String): 
+  - name: String
+   name: String
+}
+interface GenreRepository << interface >> {
+  + findByNameIgnoreCase(String): Optional<Genre>
+}
+class JWTAuthFilter {
+  + JWTAuthFilter(UserAuthProvider): 
+  # doFilterInternal(HttpServletRequest, HttpServletResponse, FilterChain): void
+}
+class LibraryApiApplication {
+  + LibraryApiApplication(): 
+  + main(String[]): void
+}
+annotation MinListSize << annotation >> {
+  + payload(): Class<Payload>[]
+  + groups(): Class<?>[]
+  + message(): String
+}
+class MinListSizeValidator {
+  + MinListSizeValidator(): 
+  + isValid(List<?>, ConstraintValidatorContext): boolean
+}
+class NotFoundException {
+  + NotFoundException(String): 
+}
+enum Role << enumeration >> {
+  - Role(String): 
+  + values(): Role[]
+  + valueOf(String): Role
+   authority: String
+}
+class SecurityConfig {
+  + SecurityConfig(UserAuthProvider): 
+  + configure(HttpSecurity): SecurityFilterChain
+  + passwordEncoder(): PasswordEncoder
+}
+class SignUpDto {
+  + SignUpDto(): 
+  + SignUpDto(String, char[]): 
+  - email: String
+  - password: char[]
+   password: char[]
+   email: String
+}
+annotation UniqueBookName << annotation >> {
+  + groups(): Class<?>[]
+  + payload(): Class<Payload>[]
+  + message(): String
+}
+class UniqueBookNameValidator {
+  + UniqueBookNameValidator(BookRepository): 
+  + isValid(String, ConstraintValidatorContext): boolean
+}
+class User {
+  + User(): 
+  + User(Long, String, String, Role): 
+  - favouriteBooks: List<Book>
+  - role: Role
+  - id: Long
+  - email: String
+  - password: String
+  + addFavouriteBook(Book): void
+   password: String
+   role: Role
+   favouriteBooks: List<Book>
+   id: Long
+   email: String
+}
+class UserAuthProvider {
+  + UserAuthProvider(UserService): 
+  + createToken(UserDto): String
+  # init(): void
+  + validateToken(String): Authentication
+}
+class UserDto {
+  + UserDto(Long, String, Role, String, List<BookDto>): 
+  + UserDto(): 
+  - email: String
+  - role: Role
+  - favouriteBooks: List<BookDto>
+  - id: Long
+  - token: String
+   role: Role
+   favouriteBooks: List<BookDto>
+   token: String
+   id: Long
+   email: String
+}
+interface UserRepository << interface >> {
+  + findByEmail(String): Optional<User>
+}
+class UserService {
+  + UserService(UserRepository, BookRepository, ModelMapper): 
+  + setRoleByEmail(String, Role): void
+  + findUserByEmail(String): UserDto
+  + removeFavouriteBook(String, Long): void
+  + register(SignUpDto): UserDto
+  + login(CredentialsDto): UserDto
+  + addFavouriteBook(String, Long): BookDto
+}
+
+AuthController          "1" *-[#595959,plain]-> "userAuthProvider\n1" UserAuthProvider        
+AuthController          "1" *-[#595959,plain]-> "userService\n1" UserService             
+Book                    "1" *-[#595959,plain]-> "authors\n*" Author                  
+Book                    "1" *-[#595959,plain]-> "genres\n*" Genre                   
+BookController          "1" *-[#595959,plain]-> "bookService\n1" BookService             
+BookController          "1" *-[#595959,plain]-> "userService\n1" UserService             
+BookDto                 "1" *-[#595959,plain]-> "authors\n*" AuthorDto               
+BookDto                 "1" *-[#595959,plain]-> "genres\n*" GenreDto                
+BookService             "1" *-[#595959,plain]-> "authorRepository\n1" AuthorRepository        
+BookService             "1" *-[#595959,plain]-> "bookRepository\n1" BookRepository          
+BookService             "1" *-[#595959,plain]-> "genreRepository\n1" GenreRepository         
+CommandLineHandler      "1" *-[#595959,plain]-> "userService\n1" UserService             
+CreateBookDto           "1" *-[#595959,plain]-> "authors\n*" AuthorDto               
+CreateBookDto           "1" *-[#595959,plain]-> "genres\n*" GenreDto                
+JWTAuthFilter           "1" *-[#595959,plain]-> "userAuthProvider\n1" UserAuthProvider        
+SecurityConfig          "1" *-[#595959,plain]-> "userAuthProvider\n1" UserAuthProvider        
+UniqueBookNameValidator "1" *-[#595959,plain]-> "bookRepository\n1" BookRepository          
+User                    "1" *-[#595959,plain]-> "favouriteBooks\n*" Book                    
+User                    "1" *-[#595959,plain]-> "role\n1" Role                    
+UserAuthProvider        "1" *-[#595959,plain]-> "userService\n1" UserService             
+UserDto                 "1" *-[#595959,plain]-> "favouriteBooks\n*" BookDto                 
+UserDto                 "1" *-[#595959,plain]-> "role\n1" Role                    
+UserService             "1" *-[#595959,plain]-> "bookRepository\n1" BookRepository          
+UserService             "1" *-[#595959,plain]-> "userRepository\n1" UserRepository          
+@enduml

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2025-02-06T20:56:10.037+00:00",
+  "status": 403,
+  "error": "Forbidden",
+  "path": "/api/v1/books/1"
+}

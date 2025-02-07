@@ -1,0 +1,21 @@
+POST http://localhost:8080/api/v1/books
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3Mzg4NzMxODcsImV4cCI6MTc0MTU1MTU4N30.75Y46HFb-2hIkxIKFSbpinNxDbgZEbKLPfEdieub1ow
+Content-Type: application/json
+
+{
+  "name": "Pride and Prejudice",
+  "description": "",
+  "publicationYear": 1813,
+  "authors": [],
+  "genres": [
+    {
+      "name": "fiction"
+    },
+    {
+      "name": "historical"
+    },
+    {
+      "name": "novel"
+    }
+  ]
+}

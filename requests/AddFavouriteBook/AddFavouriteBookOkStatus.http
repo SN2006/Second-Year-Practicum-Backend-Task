@@ -1,0 +1,2 @@
+POST http://localhost:8080/api/v1/books/favourites/add-by-id/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQxQGdtYWlsLmNvbSIsImlhdCI6MTczODg3Mjg4MCwiZXhwIjoxNzQxNTUxMjgwfQ.C3fGEtovlSOq3XQIla5qU2qH6xH8b8jFEjO7o_vAIzM

@@ -1,0 +1,2 @@
+DELETE http://localhost:8080/api/v1/books/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQxQGdtYWlsLmNvbSIsImlhdCI6MTczODg3MzM3OCwiZXhwIjoxNzQxNTUxNzc4fQ.rZj4hTC_0OwPJ1V0c-OajTy4cbOjZOlkkAGBCA_L54w
