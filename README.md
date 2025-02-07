@@ -48,3 +48,7 @@ All request examples you can find in holder [requests](requests)
 
 - Class Diagram you can find [here](uml/ClassDiagram.plantuml)
 - Entity Relationship Diagram you can find [here](uml/EntityRelationshipDiagram.puml)
+
+## Answers to the theory test
+
+Answers to the theory test can be found [here](theoreticalPart/test.md)

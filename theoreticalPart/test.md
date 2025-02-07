@@ -1,0 +1,23 @@
+# Testing of theoretical knowledge
+
+1. 1 (bool(false))
+2. 2 (bool(true))
+3. 2 (10)
+4. 2 (10)
+5. 3 (Вылетит ошибка)
+6. 1 (5)
+7. 2 (10)
+8. 7 (Вылетит ошибка)
+9. 1 (Выпонится успешно)
+10. 3 (Dog move) and 5 (Animal move)
+11. 5 and 6 (Animal breath two times)
+12. 3 (Установит все зависимости согласно composer.lock (если есть) в vendor директорию, иначе использует composer.
+    json и после создаст composer.lock файл.)
+13. 2 (Установит все зависимости согласно composer.json (даже если есть composer.lock файл) в vendor директорию, после обновит composer.lock)
+14. 1 (``composer require <имя пакета> ``)
+15. 3 (1.2.X)
+16. [answer](sqls/question16.sql)
+17. [answer](sqls/question17.sql)
+18. [answer](sqls/question18.sql)
+19. [answer](sqls/question19.sql)
+20. [answer](sqls/question20.sql)
